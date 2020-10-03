@@ -5,33 +5,30 @@ dist: focal
 language: python
 services: docker
 python:
-  - 3.8
+- 3.8
 jobs:
   include:
-    - stage: "docker-fedora"
-      name: "Test within Fedora Image"
-      # Create a fedora docker image
-      install:
-        - docker build -t fedora .
-      script:
-        - docker run fedora /bin/sh -c "cd /src; make code; make test"
-    - stage: "tox"
-      name: "Test everything with tox"
-      install: pip install -U tox-travis
-      script: tox && make clean
-
-# Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
-# following command to finish PyPI deployment setup:
-# $ travis encrypt --add deploy.password
+  - stage: docker-fedora
+    name: Test within Fedora Image
+    install:
+    - docker build -t fedora .
+    script:
+    - docker run fedora /bin/sh -c "cd /src; make code; make test"
+  - stage: tox
+    name: Test everything with tox
+    install: pip install -U tox-travis
+    script: tox && make clean
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
   user: Iolaum
   password:
+    # Assuming you have installed the travis-ci CLI tool, after you
+    # create the Github repo and add it to Travis, run the
+    # following command to finish PyPI deployment setup:
+    # travis encrypt {PYPI_TOKEN} --add deploy.password -r Iolaum/fcust
     # yamllint disable-line rule:line-length
-    secure: eSdAPC6TsA4U7OLS9PiaUtbrBriPQCaA6akuuqHRaNfC3TKpDJE1gOVpaSwQUIeZm6/xSN3UHNkN3PkybT1a/xR4aCiUnb7D1C9p9mandvZN0xVq2bfTJhVHedutlpPJx2xxUoWrOIQ6VkYezZX7rYuAeK2EnRjfqaTh+MWO4IhZWI/uDOBJ6jef5pIOMNG4NiaTdiC89Sx2VkC7dQc6ijbnjpVTZNlCu5x9o1k2TwM0lmBTFOZppXMqn29dFkSeYZfmmuiwQLxe4iVLIEl/Vug8RAZti4hn374pcamx9w9JfGi3SpK9S6VNg8pa8V0SAkyEdGfR2lZNxS4XiHY0upn7IC/tWRATAumQAisUs3m7J5oq0sLWTKDDnuCnyBrW1ukrERXBrhY+cMyToU1itshziD7mxiW+oMokZ+sKApsbErJkPnpNfLNx+3XFqj3O36EAng6COMQw1i06PSRx5kLAsMDyNCXFrg6d5orZ4CBkNao44UiKZJ/XuWzEKU4BGZJ6UTqk+rBoTYYlSVajAr/h/g69z0OIX68nnJ6F/k4kUAKlMn3IpCpO5rm04daTfExN2QIlMgUcHZ6M3MO32p5/+KJWbtLmhYvPqNdf62kGXW+15JAVBl8Xf+rQThOS4hO52HBmr6yzBZ35m+XURSYegcepfsJE7K2fEkeO/hE=
-
+    secure: gzlD9qocm0jdtx7xpQC4NE090fSzJWtlu++bBH8ayKe3UNnx+uiLARxoad1ICKcoIhkYvAk2NwdfsjSLPIckrNtc07ZX6c1boV/0zGYxQiQi4d/S6lZt1F5nB9cyQDS2TH772hAge4p6r3dxauOjdrp9aW5kcGJuzxUQkaDBSptGGaK4idF2ShRpKXfERwcDtZdrkLc3haUaLoTMmbMA80l5Cq7Im3sgjma3/y1zV3xFmNhvCwtDbQvPGgYMPMWeKHC7ZAv05JN0TWsUzp61XjvRTneoKgUxWxM4PRJfLl7oYexvWjGEjdtipY1MLJBZsRCDkuafLf/njhoktkCRB6nV7ZW4Lpr847/0hB0cPxEC2LzgL6IImEEe+a5zPh54JzvDZlQN4rA1aR/xuFaUvCy3aJPRxrtqXs6YogAXrPHWX4VgmCHvCPdAQAcTwoBudW2zEruc3u3MtTnuYgppbhr0GonECE+bmHwPLLivDVfl8XZ3kFd5B5pxkTc/8/TilJMIjKfMyrm3zGvC5tgVaYKfAtwHHRKcuGDfUngj0ZRHoe0r3wDGLxOsNcQd8xuMNxwDigQ4DsOV8FSNSYzrx9naSpbuKqJVSPoQMCinX8e/VSrYKgoz+Kc5O/zxITg0JwWLkf+yG7AOrk2jvYkoK3KyWXRyVTqeqmIy+TzFNPU=
   on:
     tags: true
     repo: Iolaum/fcust
