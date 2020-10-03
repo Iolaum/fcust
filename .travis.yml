@@ -1,15 +1,24 @@
 ---
 # Config file for automatic testing at travis-ci.com
 
+dist: focal
 language: python
+services: docker
 python:
   - 3.8
-
-# Command to install dependencies
-install: pip install -U tox-travis
-
-# Command to run tests, e.g. python setup.py test
-script: tox
+jobs:
+  include:
+    - stage: "docker-fedora"
+      name: "Test within Fedora Image"
+      # Create a fedora docker image
+      install:
+        - docker build -t fedora .
+      script:
+        - docker run fedora /bin/sh -c "cd /src; make code; make test"
+    - stage: "tox"
+      name: "Test everything with tox"
+      install: pip install -U tox-travis
+      script: tox && make clean
 
 # Assuming you have installed the travis-ci CLI tool, after you
 # create the Github repo and add it to Travis, run the
