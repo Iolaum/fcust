@@ -1,5 +1,5 @@
 Welcome to Folder Custodian's documentation!
-======================================
+============================================
 
 .. toctree::
    :maxdepth: 2

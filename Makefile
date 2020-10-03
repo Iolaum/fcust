@@ -47,8 +47,13 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-lint: ## check style with flake8
+code: ## code quality checks
+	black fcust tests
 	flake8 fcust tests
+	mypy fcust tests
+	check-manifest
+	yamllint .travis.yml
+	doc8 docs
 
 test: ## run tests quickly with the default Python
 	pytest

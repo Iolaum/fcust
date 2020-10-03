@@ -54,38 +54,38 @@ If you are proposing a feature:
 * Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
+
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `fcust` for local development.
+Ready to contribute? Here's how to set up `podcust` for local development.
 
 1. Fork the `fcust` repo on GitHub.
-2. Clone your fork locally::
+2. Clone your fork locally. ::
 
     $ git clone git@github.com:your_name_here/fcust.git
+    $ cd podcust
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. From the root of the repository create a python virtual environment to use for our project.
+   Install the project in editable mode along with developer dependencies. ::
 
-    $ mkvirtualenv fcust
-    $ cd fcust/
-    $ python setup.py develop
+    $ python3 -m venv venv
+    $ source venv/bin/activate
+    (venv) $ pip install -e .[dev]
 
-4. Create a branch for local development::
+4. Create a branch for local development. ::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
-   tests, including testing other Python versions with tox::
+5. When you're done making changes, check that your changes pass code quality checks
+   and tests. ::
 
-    $ flake8 fcust tests
-    $ python setup.py test or pytest
-    $ tox
+    $ make code
+    $ make test
 
-   To get flake8 and tox, just pip install them into your virtualenv.
-
-6. Commit your changes and push your branch to GitHub::
+6. Commit your changes and push your branch to GitHub. ::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
