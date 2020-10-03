@@ -5,19 +5,19 @@ dist: focal
 language: python
 services: docker
 python:
-- 3.8
+  - 3.8
 jobs:
   include:
-  - stage: docker-fedora
-    name: Test within Fedora Image
-    install:
-    - docker build -t fedora .
-    script:
-    - docker run fedora /bin/sh -c "cd /src; make code; make test"
-  - stage: tox
-    name: Test everything with tox
-    install: pip install -U tox-travis
-    script: tox && make clean
+    - stage: docker-fedora
+      name: Test within Fedora Image
+      install:
+        - docker build -t fedora .
+      script:
+        - docker run fedora /bin/sh -c "cd /src; make code; make test"
+    - stage: tox
+      name: Test everything with tox
+      install: pip install -U tox-travis
+      script: tox && make clean
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
