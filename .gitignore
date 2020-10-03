@@ -103,3 +103,9 @@ ENV/
 
 # IDE settings
 .vscode/
+
+### Cutome additions ###
+
+# ignore auto-doc files
+docs/fcust.rst
+docs/modules.rst
