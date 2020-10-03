@@ -21,8 +21,6 @@ requirements0 = parse_requirements(
     str(PurePath.joinpath(PurePath(__file__).parent, 'requirements.txt')),
     session=PipSession()
 )
-print(requirements0)
-print(type(requirements0))
 requirements = [str(requirement.requirement) for requirement in requirements0]
 del requirements0
 
