@@ -1,31 +1,9 @@
-"""Main module.
-
-Dev Notes:
-
-https://stackabuse.com/python-check-if-file-or-directory-is-empty/
-from pathlib import Path
-print(Path(emptydirectory).iterdir()) # <generator object Path.iterdir at 0x7f2cf6f584a0>
-# Using next(), we are trying to fetch next available item.
-# With None as the default return item, next() won't raise a StopIteration exception
-# in case there is no item in the collection:
-print(next(Path(emptydirectory).iterdir(), None))
-# None
-print(next(Path(nonemptydirectory).iterdir(), None))
-# /mnt/f/code.books/articles/python/code/file_dir.py
-
-
-https://docs.python.org/3/library/stat.html#module-stat
-stat.S_ISDIR(mode): Return non-zero if the mode is from a directory.
-
-
-https://stackoverflow.com/a/61328376/1904901
-from pathlib import Path
-fl = Path("file_name")
-fl.chmod(0o444)
-
+"""
+Main module.
 """
 
-from pathlib import PosixPath  # , Path
+from pathlib import PosixPath, Path
+from shutil import chown
 
 
 class CommonFolder:
@@ -59,12 +37,32 @@ class CommonFolder:
         else:
             self.group = common_group
 
+    def enforce_permissions(self):
+        """
+        We read the contents of a specified directory and enforce unix permissions.
 
-def enforce_content_permissions():
-    """
-    We read the contents of a specified directory and enforce unix permissions.
+        Files should have 664 permissions
+        Folders should have 2775 permisions (ie also setguid bit)
+        Group should be common golder's group.
+        """
 
-    Files should have 664 permissions
-    Folders should have 2775 permisions (ie also setguid bit)
-    Group should be common golder's group.
-    """
+        # Let's iterate over folders we find first - glob returns a generator!
+        list1 = self.path.glob("**/*")
+        for il in list1:
+            pil = Path(il)
+
+            # Fix group membership if needed
+            if pil.group() != self.group:
+                chown(pil, group=self.group)
+
+            # Check folder permissions and fix if needed
+            if pil.is_dir():
+                perms: str = oct(pil.stat().st_mode)[-4:]
+                if perms != "2775":
+                    pil.chmod(0o42775)
+
+            # Check folder permissions and fix if needed
+            if pil.is_file():
+                perms: str = oct(pil.stat().st_mode)[-4:]
+                if perms != "0664":
+                    pil.chmod(0o40664)
