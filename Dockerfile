@@ -4,7 +4,7 @@ RUN dnf -y update
 RUN dnf -y install python3-pip python3-tox make
 RUN dnf clean all
 
-ADD . /src
+RUN git clone https://github.com/Iolaum/fcust.git /src
 
 RUN useradd -ms /bin/bash user1
 RUN useradd -ms /bin/bash user2
