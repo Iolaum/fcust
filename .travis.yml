@@ -13,7 +13,7 @@ jobs:
       install:
         - docker build -t fedora .
       script:
-        - docker run fedora /bin/sh -c "cd /src; make code; make test" --user user1
+        - docker run fedora --user='user1' /bin/sh -c "cd /src; make code; make test"
 
 deploy:
   provider: pypi
