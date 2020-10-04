@@ -1,7 +1,7 @@
 FROM fedora:32
 
 RUN dnf -y update
-RUN dnf -y install python3-pip python3-tox make
+RUN dnf -y install python3-pip python3-tox make git
 RUN dnf clean all
 
 RUN git clone https://github.com/Iolaum/fcust.git /src
