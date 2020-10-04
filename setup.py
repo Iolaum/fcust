@@ -51,7 +51,7 @@ setup(
     author_email='nikperrakis@gmail.com',
     python_requires='>=3.8',
     classifiers=[
-        'Development Status :: Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
@@ -79,6 +79,6 @@ setup(
         "dev": setup_requirements + test_requirements
     },
     url='https://github.com/Iolaum/fcust',
-    version='0.0.2',
+    version='0.0.3',
     zip_safe=False,
 )
