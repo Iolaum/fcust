@@ -1,29 +1,67 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Tests for `fcust` package."""
 
 import pytest
 
+# import mock
+import tempfile
+from pathlib import Path, PurePath
 from click.testing import CliRunner
-
-# from fcust import fcust
+from fcust.fcust import CommonFolder
 from fcust import cli
 
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+class TestCommonFolder:
+    def setup_class(cls):
+        cls.folder = Path(tempfile.mkdtemp())
+        # populate folder
+        f1 = PurePath.joinpath(cls.folder, "file1.txt")
+        with f1.open(mode="w") as fh:
+            fh.write("file1")
+        f2 = PurePath.joinpath(cls.folder, "file2.txt")
+        with f2.open(mode="w") as fh:
+            fh.write("file2")
+        PurePath.joinpath(cls.folder, "folder").mkdir()
+        f3 = PurePath.joinpath(cls.folder, "folder", "file3.txt")
+        with f3.open(mode="w") as fh:
+            fh.write("file3")
+        cls.group = cls.folder.group()
+        cls.owner = cls.folder.owner()
 
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+    def test_init_folder_type(self):
+        """
+        Basic testing.
+        """
 
+        with pytest.raises(TypeError) as exc:
+            test_path = "hi"
+            CommonFolder(folder_path=test_path)
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+        assert str(exc.value) == (
+            f"Expected PosixPath object instead of {type(test_path)}"
+        )
+
+    def test_init_folder_exists(self):
+        """
+        Basic testing.
+        """
+
+        with pytest.raises(FileNotFoundError) as exc:
+            test_path = Path("nothere")
+            CommonFolder(folder_path=test_path)
+
+        assert str(exc.value) == (
+            "Folder is expected to be present when the class is initialized."
+        )
+
+    def test_init_group(self):
+        """
+        Basic testing.
+        """
+
+        cf = CommonFolder(self.folder)
+        assert cf.group == self.group
 
 
 def test_command_line_interface():
