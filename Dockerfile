@@ -8,7 +8,7 @@ ADD . /src
 
 RUN useradd -ms /bin/bash user1
 RUN useradd -ms /bin/bash user2
-RUN groupadd common
-RUN usermod -a -G common user1
-RUN usermod -a -G common user2
-RUN cd /src; pip install --upgrade pip; pip install .[dev]
+RUN groupadd family
+RUN usermod -a -G family user1
+RUN usermod -a -G family user2
+RUN cd /src; pip install --upgrade pip; pip install .[dev] --use-feature=2020-resolver
