@@ -1,15 +1,21 @@
 """Console script for fcust."""
-import sys
 import click
+from pathlib import PosixPath
+from fcust.fcust import CommonFolder
 
 
 @click.command()
-def main(args=None):
-    """Console script for fcust."""
-    click.echo("Replace this message by putting your code into " "fcust.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
-    return 0
+@click.argument("folder_path")
+def main(
+    folder_path: str,
+    help="Path where the common foler is located",
+):
+    fpath = PosixPath(folder_path)
+    if not fpath.exists():
+        raise FileNotFoundError(f"Specified folder {folder_path} does not exist!")
 
-
-if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+        # assume common folder itself has been created with proper group and permissions.
+    click.echo(f"Initiating maintenance on {folder_path}")
+    cf = CommonFolder(folder_path=fpath)
+    cf.enforce_permissions()
+    click.echo("Common folder maintenance completed.")
