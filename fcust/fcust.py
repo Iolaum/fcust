@@ -6,6 +6,7 @@ from pathlib import PosixPath, Path
 from shutil import chown
 from pwd import getpwuid
 from os import getuid
+import logging
 
 
 class CommonFolder:
@@ -41,6 +42,30 @@ class CommonFolder:
 
         self.user: str = getpwuid(getuid()).pw_name
 
+        # create logger
+        logger = logging.getLogger("fcust")
+        logger.setLevel(logging.DEBUG)
+        # Create handlers
+        sh = logging.StreamHandler()
+        # TODO: make filename depend on day/time?
+        fh = logging.FileHandler("/tmp/fcust.log", mode="w")
+        sh.setLevel(logging.DEBUG)
+        fh.setLevel(logging.DEBUG)
+        # Create formatters and add it to handlers
+        format1 = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+        format2 = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
+        sh.setFormatter(format1)
+        fh.setFormatter(format2)
+        # Add handlers to the logger
+        logger.addHandler(sh)
+        logger.addHandler(fh)
+        # add logger object to class
+        self.logger: logging.Logger = logger
+
+        logger.info(f"CommonFolder class instantiated for: {str(folder_path)}")
+
     def enforce_permissions(self):
         """
         We read the contents of a specified directory and enforce unix permissions.
@@ -54,23 +79,33 @@ class CommonFolder:
         run by all the users sharing the common folder.
         """
 
-        # Let's iterate over folders we find first - glob returns a generator!
-        list1 = self.path.glob("**/*")
-        for il in list1:
-            pil = Path(il)
+        try:
+            self.logger.info("Starting permissions enforcement")
+            # Let's iterate over folders we find first - glob returns a generator!
+            list1 = self.path.glob("**/*")
+            for il in list1:
+                pil = Path(il)
 
-            # Fix group membership if needed
-            if pil.group() != self.group and pil.owner() == self.user:
-                chown(pil, group=self.group)
+                # Fix group membership if needed
+                if pil.group() != self.group and pil.owner() == self.user:
+                    chown(pil, group=self.group)
+                    self.logger.debug(f"Fixing group for {str(pil)}")
 
-            # Check folder permissions and fix if needed
-            if pil.is_dir():
-                perms: str = oct(pil.stat().st_mode)[-4:]
-                if perms != "2775" and pil.owner() == self.user:
-                    pil.chmod(0o42775)
+                # Check folder permissions and fix if needed
+                if pil.is_dir():
+                    perms: str = oct(pil.stat().st_mode)[-4:]
+                    if perms != "2775" and pil.owner() == self.user:
+                        pil.chmod(0o42775)
+                        self.logger.debug(f"Fixing permissions for {str(pil)}")
 
-            # Check folder permissions and fix if needed
-            if pil.is_file():
-                perms: str = oct(pil.stat().st_mode)[-4:]
-                if perms != "0664" and pil.owner() == self.user:
-                    pil.chmod(0o40664)
+                # Check folder permissions and fix if needed
+                if pil.is_file():
+                    perms: str = oct(pil.stat().st_mode)[-4:]
+                    if perms != "0664" and pil.owner() == self.user:
+                        pil.chmod(0o40664)
+                        self.logger.debug(f"Fixing permissions for {str(pil)}")
+
+        except Exception as exc:
+            self.logger.critical(exc, exc_info=True)
+
+        self.logger.info("Finished permissions enforcement")

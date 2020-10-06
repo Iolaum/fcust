@@ -69,20 +69,14 @@ class TestCommonFolder:
             "Folder is expected to be present when the class is initialized."
         )
 
-    def test_init_group(self):
-        """
-        Basic testing.
-        """
-
-        cf = CommonFolder(self.folder)
-        assert cf.group == self.group
-
     def test_enforce_permissions(self):
         """
         Testing permision and group membership enforcement.
         """
 
         cf = CommonFolder(self.folder)
+        assert cf.group == self.group
+
         cf.enforce_permissions()
 
         assert oct(self.o1.stat().st_mode)[-4:] == "0664"
