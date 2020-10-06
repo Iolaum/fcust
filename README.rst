@@ -27,10 +27,25 @@ Linux Common Folder Custodian
 * Documentation: https://fcust.readthedocs.io.
 
 
+
 Features
 --------
 
-* TODO
+This package is intended to perform maintenance over a folder shared across many users in a Fedora Workstation.
+The folder belongs to a group for which all users are members.
+
+* Go through a foler's content and enforce common group ownership.
+* Go through a foler's content and enforce common group read and write permissions as
+  well as set groupid sticky bit.
+* Provide a command line command with sane defaults for enforcing common folder group ownership
+  and permissions.
+* (TODO) Write logs to ``/tmp/fcust``.
+* (TODO) Provide user systemd service to periodically enforce common folder group ownership
+  and permissions.
+
+The key problem this package intends to solve is that files moved from one location to another do not inherit
+proper permissions in the commonly used folder and therefore when another user tries to access them they encounter
+problems.
 
 Credits
 -------
