@@ -14,6 +14,11 @@ class CommonFolder:
 
     Main class regarding management of a folder that is commonly used across many users.
 
+    - The class creates a logfile at /tmp/fcust/$USER.log
+    - By default the class assumes that the root of the common folder is configured
+      correctly and then tries to enforce appropriate permissions.
+
+
     :param folder_path: Path where the common folder is located.
     :param common_group: Group name regarding the common folder.
       If not passed the existing group of the folder will be assumed to be the proper folder.
@@ -48,7 +53,10 @@ class CommonFolder:
         # Create handlers
         sh = logging.StreamHandler()
         # TODO: make filename depend on day/time?
-        fh = logging.FileHandler("/tmp/fcust.log", mode="w")
+        logpath = Path("/tmp/fcust")
+        logpath.mkdir(exist_ok=True)
+        logpath = logpath.joinpath(self.user + ".log")
+        fh = logging.FileHandler(str(logpath), mode="w")
         sh.setLevel(logging.DEBUG)
         fh.setLevel(logging.DEBUG)
         # Create formatters and add it to handlers
