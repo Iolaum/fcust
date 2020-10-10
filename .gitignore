@@ -106,6 +106,5 @@ ENV/
 
 ### Cutome additions ###
 
-# ignore auto-doc files
-docs/fcust.rst
-docs/modules.rst
+# ignore rpm directory
+rpm

@@ -59,7 +59,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901
-    data_files = [('/usr/share/man/', ['docs/_build/man/fcust.1'])],
+    data_files = [('/usr/share/man/man1/', ['docs/_build/man/fcust.1'])],
     description="Linux Common Folder Custodian",
     entry_points={
         'console_scripts': [
@@ -81,6 +81,6 @@ setup(
         "dev": setup_requirements + test_requirements
     },
     url='https://github.com/Iolaum/fcust',
-    version='0.0.7',
+    version='0.0.8',
     zip_safe=False,
 )

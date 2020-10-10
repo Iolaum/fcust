@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.7
+Version:        0.0.8
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -72,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{_mandir}/fcust.1
+%{_mandir}/man1/fcust.1.gz
 %{_bindir}/fcust
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
@@ -82,5 +82,5 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.7-1
-- Initial package.
+* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.8-1
+- Draft fedora 32 rpm package with core common folder maintenance functionality.
