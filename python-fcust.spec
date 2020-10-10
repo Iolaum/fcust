@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.6
+Version:        0.0.7
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -82,5 +82,5 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.5-1
+* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.7-1
 - Initial package.
