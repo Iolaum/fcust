@@ -25,11 +25,11 @@ requirements = [str(requirement.requirement) for requirement in requirements0]
 del requirements0
 
 setup_requirements = [
-    "pip>=20.2",
+    "pip",
     "bump2version>=1.0",
-    "wheel>=0.35.1",
-    "Sphinx>=3.2.1",
-    "twine>=3.2.0",
+    "wheel,
+    "Sphinx",
+    "twine",
     "check-manifest"
 ]
 

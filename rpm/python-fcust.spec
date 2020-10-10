@@ -1,4 +1,4 @@
-# Created by pyp2rpm-3.3.4
+# Originally created by pyp2rpm-3.3.4
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
@@ -6,35 +6,34 @@ Version:        0.0.5
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
-License:        GNU General Public License v3
+License:        GPLv3+
 URL:            https://github.com/Iolaum/fcust
 Source0:        %{pypi_source}
 BuildArch:      noarch
 
-# BuildRequires:  python3-devel
+BuildRequires:  python3-devel
+BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(wheel)
+BuildRequires:  python3dist(sphinx)
+BuildRequires:  python3dist(click) >= 7.1
 # BuildRequires:  python3dist(black)
 # BuildRequires:  python3dist(bump2version) >= 1
 # BuildRequires:  python3dist(check-manifest)
-# BuildRequires:  python3dist(click) >= 7.1
 # BuildRequires:  python3dist(coverage)
 # BuildRequires:  python3dist(doc8)
 # BuildRequires:  python3dist(flake8)
 # BuildRequires:  python3dist(mock)
 # BuildRequires:  python3dist(mypy)
-# BuildRequires:  python3dist(pip)
 # BuildRequires:  python3dist(pytest)
 # BuildRequires:  python3dist(pytest-runner)
-# BuildRequires:  python3dist(setuptools)
-# BuildRequires:  python3dist(sphinx) >= 3.2.1
 # BuildRequires:  python3dist(tox)
-# BuildRequires:  python3dist(twine) >= 3.2
-# BuildRequires:  python3dist(wheel) >= 0.35.1
+# BuildRequires:  python3dist(twine)
 # BuildRequires:  python3dist(yamllint)
-# BuildRequires:  python3dist(sphinx)
 
 %description
- Folder Custodian Linux Common Folder Custodian * Free software: GNU General
-Public License v3
+ Linux Common Folder Custodian
+ * Free software: GNU General Public License v3
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
@@ -43,13 +42,13 @@ Summary:        %{summary}
 Requires:       python3dist(click) >= 7.1
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
- Folder Custodian Linux Common Folder Custodian * Free software: GNU General
-Public License v3
+ Linux Common Folder Custodian
+ * Free software: GNU General Public License v3
 
 %package -n python-%{pypi_name}-doc
-Summary:        fcust documentation
+Summary:        Documentation for fcust
 %description -n python-%{pypi_name}-doc
-Documentation for fcust
+Documentation for Linux Common Folder Custodian
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
@@ -58,8 +57,9 @@ rm -rf %{pypi_name}.egg-info
 
 %build
 %py3_build
-# generate html docs
+# generate html and man docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
+PYTHONPATH=${PWD} sphinx-build-3 docs man
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
@@ -71,7 +71,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 %files -n python3-%{pypi_name}
 %license LICENSE
-%doc README.rst docs/readme.rst
+%doc README.rst
+%{_mandir}/fcust.1
 %{_bindir}/fcust
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
