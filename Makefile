@@ -33,7 +33,7 @@ clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and 
 clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
-	rm -fr rpm/*.*
+	rm -fr rpm/*
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
@@ -95,7 +95,7 @@ install: clean ## install the package to the active Python's site-packages
 
 f32: # build package for F32
 	# remove all previous artifacts
-	rm -rf ./rpm/*.*
+	rm -rf ./rpm/*
 	# download pypi source package (TODO: add option to build locally?)
 	pip download --no-binary :all: --no-deps -d ./rpm/ fcust
 	# add needed spec file

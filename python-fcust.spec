@@ -72,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%doc %{_mandir}/fcust.1
+%{_mandir}/fcust.1
 %{_bindir}/fcust
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
