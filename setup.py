@@ -27,7 +27,7 @@ del requirements0
 setup_requirements = [
     "pip",
     "bump2version>=1.0",
-    "wheel,
+    "wheel",
     "Sphinx",
     "twine",
     "check-manifest"
@@ -79,6 +79,6 @@ setup(
         "dev": setup_requirements + test_requirements
     },
     url='https://github.com/Iolaum/fcust',
-    version='0.0.5',
+    version='0.0.6',
     zip_safe=False,
 )

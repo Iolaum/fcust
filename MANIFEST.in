@@ -12,6 +12,7 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
-exclude docs/modules.rst
-exclude docs/fcust.rst
+include docs/_build/fcust.1
 recursive-exclude docs/_build *
+
+exclude python-fcust.spec

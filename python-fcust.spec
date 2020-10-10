@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.5
+Version:        0.0.6
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
