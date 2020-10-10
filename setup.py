@@ -58,6 +58,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
     ],
+    # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901
+    data_files = [('man/fcust.1', ['docs/_build/man/fcust.1'])],
     description="Linux Common Folder Custodian",
     entry_points={
         'console_scripts': [
