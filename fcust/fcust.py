@@ -50,12 +50,19 @@ class CommonFolder:
         # create logger
         logger = logging.getLogger("fcust")
         logger.setLevel(logging.DEBUG)
-        # Create handlers
-        sh = logging.StreamHandler()
-        # TODO: make filename depend on day/time?
+        # Create logging path in /tmp
+        # TODO: make filename depend on day/time? and tempfile pkg?
         logpath = Path("/tmp/fcust")
         logpath.mkdir(exist_ok=True)
+        # Make sure folder is accessible by other common users:
+        if logpath.group() != self.group and logpath.owner() == self.user:
+            chown(logpath, group=self.group)
+        perms: str = oct(logpath.stat().st_mode)[-4:]
+        if perms != "2775" and logpath.owner() == self.user:
+            logpath.chmod(0o42775)
         logpath = logpath.joinpath(self.user + ".log")
+        # Create handlers
+        sh = logging.StreamHandler()
         fh = logging.FileHandler(str(logpath), mode="w")
         sh.setLevel(logging.DEBUG)
         fh.setLevel(logging.DEBUG)

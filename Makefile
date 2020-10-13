@@ -102,6 +102,6 @@ f32: # build package for F32
 	cp python-fcust.spec ./rpm/
 	# create rpm packages
 	fedpkg --release f32 --path ./rpm local
-	echo "\n\n ### rpm files completed ### \n\n"
+	echo "RPM Files Built!"
 	# check rpm packages
 	fedpkg --release f32 --path ./rpm lint

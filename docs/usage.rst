@@ -1,4 +1,4 @@
-..highlight: shell
+.. highlight: shell
 
 ==============================
 Setting Up a Common Folder

@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.8
+Version:        0.0.9
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -32,8 +32,10 @@ BuildRequires:  python3dist(click) >= 7.1
 # BuildRequires:  python3dist(yamllint)
 
 %description
- Linux Common Folder Custodian
- * Free software: GNU General Public License v3
+ The Linux Common Folder Custodian looks
+ into the contents of a specified common folder
+ and makes sure they have appropriate permissions.
+ 
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
@@ -42,8 +44,9 @@ Summary:        %{summary}
 Requires:       python3dist(click) >= 7.1
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
- Linux Common Folder Custodian
- * Free software: GNU General Public License v3
+ The Linux Common Folder Custodian looks
+ into the contents of a specified common folder
+ and makes sure they have appropriate permissions.
 
 %package -n python-%{pypi_name}-doc
 Summary:        Documentation for fcust
@@ -82,5 +85,5 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.8-1
+* Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.9-1
 - Draft fedora 32 rpm package with core common folder maintenance functionality.
