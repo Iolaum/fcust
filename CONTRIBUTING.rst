@@ -58,13 +58,13 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `podcust` for local development.
+Ready to contribute? Here's how to set up `fcust` for local development.
 
 1. Fork the `fcust` repo on GitHub.
 2. Clone your fork locally. ::
 
     $ git clone git@github.com:your_name_here/fcust.git
-    $ cd podcust
+    $ cd fcust
 
 3. From the root of the repository create a python virtual environment to use for our project.
    Install the project in editable mode along with developer dependencies. ::

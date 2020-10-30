@@ -27,6 +27,12 @@ Linux Common Folder Custodian
 * Documentation: https://fcust.readthedocs.io.
 
 
+Why?
+----
+
+The family computer runs Fedora, has many users and we want to share some files with each other. 
+To achive this we create a shared common folder.
+This package solves the problems that come with our use case.
 
 Features
 --------
@@ -39,7 +45,7 @@ The folder should belong to a group for which all users are members.
   well as set groupid sticky bit.
 * Provide a command line command with sane defaults for enforcing common folder group ownership
   and permissions.
-* Writes logs to ``/tmp/fcust/$USER.log``.
+* Write logs to ``/tmp/fcust/$USER.log``.
 * (TODO) Provide user systemd service to periodically enforce common folder group ownership
   and permissions.
 
