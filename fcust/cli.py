@@ -4,9 +4,15 @@ from pathlib import PosixPath
 from fcust.fcust import CommonFolder
 
 
+@click.group()
+def main(args=None):
+    """Folder Custodian main command"""
+    click.echo("Welcome to Fedora Folder Custodian")
+
+
 @click.command()
 @click.argument("folder_path")
-def main(
+def run(
     folder_path: str,
     help="Path where the common foler is located",
 ):
@@ -19,3 +25,6 @@ def main(
     cf = CommonFolder(folder_path=fpath)
     cf.enforce_permissions()
     click.echo("Common folder maintenance completed.")
+
+
+main.add_command(run)

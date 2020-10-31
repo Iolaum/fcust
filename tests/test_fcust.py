@@ -118,14 +118,14 @@ class TestCommonFolderCLI:
     def test_command_line_interface(self):
         """Test the CLI."""
         runner = CliRunner()
-        result = runner.invoke(cli.main, [str(self.folder)])
+        result = runner.invoke(cli.main, ["run", str(self.folder)])
         assert result.exit_code == 0
         assert oct(self.o1.stat().st_mode)[-4:] == "0664"
         assert self.o1.group() == self.group
         assert oct(self.o2.stat().st_mode)[-4:] == "2775"
         assert self.o2.group() == self.group
 
-        help_result = runner.invoke(cli.main, ["--help"])
+        help_result = runner.invoke(cli.main, ["run", "--help"])
         assert help_result.exit_code == 0
         assert "--help  Show this message and exit." in help_result.output
-        assert "Usage: main [OPTIONS] FOLDER_PATH" in help_result.output
+        assert "Usage: main run [OPTIONS] FOLDER_PATH" in help_result.output
