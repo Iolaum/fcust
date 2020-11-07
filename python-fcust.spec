@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.9
+Version:        0.0.10
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -72,5 +72,8 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
+* Sat Nov 07 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.10-1
+- Beta Fedora 33 rpm package release.
+
 * Sat Oct 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.9-1
 - Draft fedora 32 rpm package with core common folder maintenance functionality.
