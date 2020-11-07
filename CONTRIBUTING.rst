@@ -123,7 +123,9 @@ $ toolbox enter dev
 $ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
 $ cd $source_code_root_repository
 $ sudo dnf install make fedpkg python3-wheel python3-devel python3-sphinx python3-click
-# Add entroy too
+$ make code
+$ make test
+$ make fedpkg
 
 
 Deploying
