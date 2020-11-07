@@ -58,8 +58,7 @@ code: ## code quality checks
 	yamllint .travis.yml
 	doc8 docs
 
-test: ## run tests quickly with the default Python
-	make clean
+test: clean ## run tests quickly with the default Python
 	pytest
 
 test-all: ## run tests on every Python version with tox
