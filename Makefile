@@ -88,20 +88,23 @@ release: dist ## package and upload a release
 dist: clean ## builds source and wheel package
 	python setup.py sdist
 	python setup.py bdist_wheel
+	echo "Showing ./dist/ contents:"
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
-f32: # build package for F32
+fedpkg: # build package for Fedora (33)
+	# build package locally
+	make dist
 	# remove all previous artifacts
 	rm -rf ./rpm/*
-	# download pypi source package (TODO: add option to build locally?)
-	pip download --no-binary :all: --no-deps -d ./rpm/ fcust
+	# move new package to rpm folder
+	mv dist/fcust-*.tar.gz ./rpm/
 	# add needed spec file
 	cp python-fcust.spec ./rpm/
 	# create rpm packages
-	fedpkg --release f32 --path ./rpm local
+	fedpkg --release f33 --path ./rpm local
 	echo "RPM Files Built!"
 	# check rpm packages
-	fedpkg --release f32 --path ./rpm lint
+	fedpkg --release f33 --path ./rpm lint

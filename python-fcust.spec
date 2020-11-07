@@ -17,19 +17,6 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(wheel)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(click) >= 7.1
-# BuildRequires:  python3dist(black)
-# BuildRequires:  python3dist(bump2version) >= 1
-# BuildRequires:  python3dist(check-manifest)
-# BuildRequires:  python3dist(coverage)
-# BuildRequires:  python3dist(doc8)
-# BuildRequires:  python3dist(flake8)
-# BuildRequires:  python3dist(mock)
-# BuildRequires:  python3dist(mypy)
-# BuildRequires:  python3dist(pytest)
-# BuildRequires:  python3dist(pytest-runner)
-# BuildRequires:  python3dist(tox)
-# BuildRequires:  python3dist(twine)
-# BuildRequires:  python3dist(yamllint)
 
 %description
  The Linux Common Folder Custodian looks

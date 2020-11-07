@@ -102,16 +102,28 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 3.5, 3.6, 3.7 and 3.8, and for PyPy. Check
+3. The pull request should work for Python 3.9, for PyPy and Fedora. Check
    https://travis-ci.com/Iolaum/fcust/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
-Tips
-----
 
-To run a subset of tests::
+Developing on Fedora Silverblue
+-------------------------------
 
-$ pytest tests.test_fcust
+If developing on Fedora Silverblue the following set up is suggested:
+
+# Crete new toolbox
+$ toolbox create dev
+# Add toolbox entry to /etc/hosts to avoid
+# warning: Could not canonicalize hostname: toolbox
+$ sudo nano /etc/hosts
+# 127.0.0.1 ... toolbox
+$ toolbox enter dev
+# Following commands are inside the toolbox
+$ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
+$ cd $source_code_root_repository
+$ sudo dnf install make fedpkg python3-wheel python3-devel python3-sphinx python3-click
+# Add entroy too
 
 
 Deploying
