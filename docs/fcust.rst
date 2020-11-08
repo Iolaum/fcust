@@ -20,6 +20,14 @@ fcust.fcust module
    :undoc-members:
    :show-inheritance:
 
+fcust.service module
+--------------------
+
+.. automodule:: fcust.service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
