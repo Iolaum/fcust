@@ -22,6 +22,10 @@ def run(
     folder_path: str,
     help="Path where the common foler is located",
 ):
+    """
+    Run folder custodian to enforce permissions on specified common folder.
+    """
+
     fpath = PosixPath(folder_path)
     if not fpath.exists():
         raise FileNotFoundError(f"Specified folder {folder_path} does not exist!")
@@ -39,6 +43,9 @@ def setup(
     folder_path: str,
     help="Path where the common foler is located",
 ):
+    """
+    Install fcust service for current user.
+    """
     fpath = PosixPath(folder_path)
     if not fpath.exists():
         raise FileNotFoundError(f"Specified folder {folder_path} does not exist!")
