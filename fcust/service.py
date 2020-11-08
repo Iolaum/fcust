@@ -40,7 +40,7 @@ def create_user_unit_path(create_folder: bool = False):
     home = Path.home()
     unit_folder_path = home.joinpath(".config", "systemd", "user")
     if create_folder and not unit_folder_path.exists():
-        unit_folder_path.mkdir()
+        unit_folder_path.mkdir(parents=True)
 
     unit_path = unit_folder_path.joinpath("fcust.service")
     return unit_path
