@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Tests for `fcust` package."""
+"""Tests for `fcust` main module."""
 
 import pytest
 
