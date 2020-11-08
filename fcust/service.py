@@ -83,6 +83,8 @@ Description=Folder Custodian Service
 
 [Service]
 Type=oneshot
+RemainAfterExit=true
+StandardOutput=journal
 ExecStart=/bin/true
 ExecStop=fcust run $COMMON_FOLDER_PATH
 
@@ -90,7 +92,7 @@ ExecStop=fcust run $COMMON_FOLDER_PATH
 WantedBy=multi-user.target
 """
 
-    template.replace("$COMMON_FOLDER_PATH", str(folder_path))
+    template = template.replace("$COMMON_FOLDER_PATH", str(folder_path))
     logger.debug("systemd service unit created")
 
     with open(unit_path, "w") as fh:
