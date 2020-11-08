@@ -3,6 +3,7 @@ Utilities for Folder Custodian Service.
 """
 
 from pathlib import Path, PosixPath
+from subprocess import run
 from fcust.fcust import create_logger
 
 
@@ -100,4 +101,25 @@ WantedBy=multi-user.target
     logger.info("Systemd service unit installed!")
 
 
-# Add function to start the service and appropriate CLI hook.
+# Add function to start/stop the service and appropriate CLI hook.
+# activate the newly created systemd service units with:
+# $ systemctl --user enable fcust
+# $ systemctl --user start fcust
+
+
+def activate_service():
+    """
+    After a fcust setup is run we need to activate the service we installed.
+    """
+
+    run(["systemctl", "--user", "enable", "fcust"], check=True)
+    run(["systemctl", "--user", "start", "fcust"], check=True)
+
+
+def deactivate_service():
+    """
+    Deactivate a running fcust service.
+    """
+
+    run(["systemctl", "--user", "disable", "fcust"], check=True)
+    run(["systemctl", "--user", "stop", "fcust"], check=True)

@@ -46,8 +46,8 @@ The folder should belong to a group for which all users are members.
 * Provide a command line command with sane defaults for enforcing common folder group ownership
   and permissions.
 * Write logs to ``/tmp/fcust/$USER.log``.
-* (TODO) Provide user systemd service to periodically enforce common folder group ownership
-  and permissions.
+* Provides user systemd service to periodically enforce common folder group ownership
+  and permissions. Runs on user log out.
 
 The key problem this package intends to solve is that files moved from one location to another do not inherit
 proper permissions in the commonly used folder and therefore when another user tries to access them they encounter

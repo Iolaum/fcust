@@ -2,7 +2,12 @@
 import click
 from pathlib import PosixPath
 from fcust.fcust import CommonFolder
-from fcust.service import create_fcust_service_unit, create_user_unit_path
+from fcust.service import (
+    create_fcust_service_unit,
+    create_user_unit_path,
+    activate_service,
+    deactivate_service,
+)
 
 
 @click.group()
@@ -44,5 +49,27 @@ def setup(
     click.echo("fcust service installed.")
 
 
+@click.command()
+def activate():
+    """
+    Activate fcust service after installing it for current user.
+    """
+    click.echo("Activating fcust service.")
+    activate_service()
+    click.echo("fcust service activated.")
+
+
+@click.command()
+def deactivate():
+    """
+    Deactivate fcust service for current user.
+    """
+    click.echo("Dectivating fcust service.")
+    deactivate_service()
+    click.echo("fcust service deactivated.")
+
+
 main.add_command(run)
 main.add_command(setup)
+main.add_command(activate)
+main.add_command(deactivate)

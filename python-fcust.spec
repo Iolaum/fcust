@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.11
+Version:        0.0.12
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -72,8 +72,8 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sun Nov 08 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.11-1
-- Adding functionality to create systemd user service.
+* Sun Nov 08 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.12-1
+- Adding functionality to create, start and stop systemd user service.
 
 * Sat Nov 07 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.10-1
 - Beta Fedora 33 rpm package release.
