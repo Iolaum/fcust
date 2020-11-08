@@ -9,6 +9,47 @@ from os import getuid
 import logging
 
 
+def create_logger(cgroup: str):
+    """
+    Function that creates a modified logger to cater fcust functionality.
+
+    :param cgroup: group ownership of the main directory
+    """
+
+    # create logger
+    logger = logging.getLogger("fcust")
+    logger.setLevel(logging.DEBUG)
+    # Create logging path in /tmp
+    # TODO: make filename depend on day/time? and tempfile pkg?
+    logpath = Path("/tmp/fcust")
+    logpath.mkdir(exist_ok=True)
+    # getting user name https://stackoverflow.com/a/2899055
+    cuser = getpwuid(getuid()).pw_name
+    # Make sure folder is accessible by other common users:
+    if logpath.group() != cgroup and logpath.owner() == cuser:
+        chown(logpath, group=cgroup)
+    perms: str = oct(logpath.stat().st_mode)[-4:]
+    if perms != "2775" and logpath.owner() == cuser:
+        logpath.chmod(0o42775)
+
+    logpath = logpath.joinpath(cuser + ".log")
+    # Create handlers
+    sh = logging.StreamHandler()
+    fh = logging.FileHandler(str(logpath), mode="w")
+    sh.setLevel(logging.DEBUG)
+    fh.setLevel(logging.DEBUG)
+    # Create formatters and add it to handlers
+    format1 = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+    format2 = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    sh.setFormatter(format1)
+    fh.setFormatter(format2)
+    # Add handlers to the logger
+    logger.addHandler(sh)
+    logger.addHandler(fh)
+
+    return logger
+
+
 class CommonFolder:
     """
 
@@ -39,47 +80,25 @@ class CommonFolder:
 
         self.path: PosixPath = folder_path
 
+        issue_group_warning: bool = False
         if common_group == "":
-            # TODO: Add warning when logging gets added.
             self.group: str = self.path.group()
+            issue_group_warning = True
         else:
             self.group = common_group
 
+        # getting user name https://stackoverflow.com/a/2899055
         self.user: str = getpwuid(getuid()).pw_name
 
-        # create logger
-        logger = logging.getLogger("fcust")
-        logger.setLevel(logging.DEBUG)
-        # Create logging path in /tmp
-        # TODO: make filename depend on day/time? and tempfile pkg?
-        logpath = Path("/tmp/fcust")
-        logpath.mkdir(exist_ok=True)
-        # Make sure folder is accessible by other common users:
-        if logpath.group() != self.group and logpath.owner() == self.user:
-            chown(logpath, group=self.group)
-        perms: str = oct(logpath.stat().st_mode)[-4:]
-        if perms != "2775" and logpath.owner() == self.user:
-            logpath.chmod(0o42775)
-        logpath = logpath.joinpath(self.user + ".log")
-        # Create handlers
-        sh = logging.StreamHandler()
-        fh = logging.FileHandler(str(logpath), mode="w")
-        sh.setLevel(logging.DEBUG)
-        fh.setLevel(logging.DEBUG)
-        # Create formatters and add it to handlers
-        format1 = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
-        format2 = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        sh.setFormatter(format1)
-        fh.setFormatter(format2)
-        # Add handlers to the logger
-        logger.addHandler(sh)
-        logger.addHandler(fh)
         # add logger object to class
-        self.logger: logging.Logger = logger
+        self.logger: logging.Logger = create_logger(cgroup=self.group)
 
-        logger.info(f"CommonFolder class instantiated for: {str(folder_path)}")
+        self.logger.info(f"CommonFolder class instantiated for: {str(folder_path)}")
+
+        if issue_group_warning:
+            self.logger.warning(
+                "Common Folder group ownership infered from existing ownership!"
+            )
 
     def enforce_permissions(self):
         """

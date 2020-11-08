@@ -3,12 +3,21 @@ Utilities for Folder Custodian Service.
 """
 
 from pathlib import Path, PosixPath
+from fcust.fcust import create_logger
 
 
 def create_fcust_service_unit(folder_path: PosixPath, unit_path: PosixPath):
     """
     Create a systemd user unit for folder cutodian.
     Use predefined template and modify where needed.
+
+    We want the service to run when the user logs out so that all the changes
+    they made are fixed if needed. We consult the following sources
+    to create the appropriate systemd service template:
+
+    https://wiki.archlinux.org/index.php/Systemd/User
+    https://superuser.com/questions/1037466/how-to-start-a-systemd-service-after-user-login-and-stop-it-before-user-logout/1269158
+    https://askubuntu.com/questions/293312/execute-a-script-upon-logout-reboot-shutdown-in-ubuntu/796157#796157
 
     :param folder_path: Path where the common folder is located.
     :param unit_path: Path where the common folder is located.
@@ -18,6 +27,13 @@ def create_fcust_service_unit(folder_path: PosixPath, unit_path: PosixPath):
         raise TypeError(f"Expected PosixPath object instead of {type(folder_path)}")
     if not isinstance(unit_path, PosixPath):
         raise TypeError(f"Expected PosixPath object instead of {type(unit_path)}")
+
+    # Assuming common folder has been created with correct permissions get it's group ownership
+    cgroup = folder_path.group()
+
+    logger = create_logger(cgroup=cgroup)
+    logger.info("Logger object created for installing systemd service unit!")
+    logger.warning("Common Folder group ownership infered from existing ownership!")
 
     template = """
     [Unit]
@@ -33,9 +49,11 @@ def create_fcust_service_unit(folder_path: PosixPath, unit_path: PosixPath):
     """
 
     template.replace("$COMMON_FOLDER_PATH", str(folder_path))
+    logger.debug("systemd service unit created")
 
     with open(unit_path, "w") as fh:
         fh.write(template)
+    logger.info("Systemd service unit installed!")
 
 
 def create_user_unit_path(create_folder: bool = False):
@@ -68,11 +86,4 @@ def create_user_unit_path(create_folder: bool = False):
     return unit_path
 
 
-# Add function to set up the user service properly
-# https://wiki.archlinux.org/index.php/Systemd/User
-# https://superuser.com/questions/1037466/how-to-start-a-systemd-service-after-user-login-and-stop-it-before-user-logout/1269158
-# https://askubuntu.com/questions/293312/execute-a-script-upon-logout-reboot-shutdown-in-ubuntu/796157#796157
-
-# Add function to start the service
-
-# Add CLI commands for the last two functions
+# Add function to start the service and appropriate CLI hook.
