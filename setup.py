@@ -51,12 +51,12 @@ setup(
     author_email='nikperrakis@gmail.com',
     python_requires='>=3.8',
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901
     data_files = [('/usr/share/man/man1/', ['docs/_build/man/fcust.1'])],
@@ -81,6 +81,6 @@ setup(
         "dev": setup_requirements + test_requirements
     },
     url='https://github.com/Iolaum/fcust',
-    version='0.0.12',
+    version='0.0.13',
     zip_safe=False,
 )

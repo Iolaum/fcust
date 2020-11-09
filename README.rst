@@ -53,6 +53,39 @@ The key problem this package intends to solve is that files moved from one locat
 proper permissions in the commonly used folder and therefore when another user tries to access them they encounter
 problems.
 
+Quick Start Guide
+-----------------
+
+.. highlight:: shell
+
+- Install fcust::
+
+
+    $ dnf install python3-fcust-0.0.13-1.fc33.noarch.rpm
+
+- Manually create a common group and add as members the users that will have access to it.
+  For example::
+
+
+    $ sudo groupadd family
+    $ sudo usermod -a -G family user1
+    $ sudo usermod -a -G family user1
+
+- Create that folder and assign proper permissions::
+
+    $ mkdir /path/to/common/folder/
+    $ chown :family /path/to/common/folder/
+    $ chmod 2775 /path/to/common/folder/
+
+- Setup fcust::
+
+    $ fcust setup /path/to/common/folder/
+    $ fcust activate
+
+- In order to run fcust manually on a properly permissioned common folder run::
+
+    $ fcust run /path/to/common/folder/
+
 Credits
 -------
 

@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.12
+Version:        0.0.13
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -72,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sun Nov 08 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.12-1
+* Mon Nov 09 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.13-1
 - Adding functionality to create, start and stop systemd user service.
 
 * Sat Nov 07 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.10-1

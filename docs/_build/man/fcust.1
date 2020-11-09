@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "FCUST" "1" "Nov 08, 2020" "0.0.10" "Folder Custodian"
+.TH "FCUST" "1" "Nov 09, 2020" "0.0.13" "Folder Custodian"
 .SH NAME
 fcust \- Folder Custodian Documentation
 .
@@ -61,13 +61,82 @@ and permissions.
 .IP \(bu 2
 Write logs to \fB/tmp/fcust/$USER.log\fP\&.
 .IP \(bu 2
-(TODO) Provide user systemd service to periodically enforce common folder group ownership
-and permissions.
+Provides user systemd service to periodically enforce common folder group ownership
+and permissions. Runs on user log out.
 .UNINDENT
 .sp
 The key problem this package intends to solve is that files moved from one location to another do not inherit
 proper permissions in the commonly used folder and therefore when another user tries to access them they encounter
 problems.
+.SS Quick Start Guide
+.INDENT 0.0
+.IP \(bu 2
+Install fcust:
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ dnf install python3\-fcust\-0.0.13\-1.fc33.noarch.rpm
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Manually create a common group and add as members the users that will have access to it.
+For example:
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo groupadd family
+$ sudo usermod \-a \-G family user1
+$ sudo usermod \-a \-G family user1
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Create that folder and assign proper permissions:
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ mkdir /path/to/common/folder/
+$ chown :family /path/to/common/folder/
+$ chmod 2775 /path/to/common/folder/
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Setup fcust:
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ fcust setup /path/to/common/folder/
+$ fcust activate
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+In order to run fcust manually on a properly permissioned common folder run:
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ fcust run /path/to/common/folder/
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
 .SS Credits
 .sp
 This package was created with \fI\%Cookiecutter\fP and the \fI\%audreyr/cookiecutter\-pypackage\fP project template.
@@ -237,6 +306,11 @@ Function that creates a modified logger to cater fcust functionality.
 Utilities for Folder Custodian Service.
 .INDENT 0.0
 .TP
+.B fcust.service.activate_service()
+After a fcust setup is run we need to activate the service we installed.
+.UNINDENT
+.INDENT 0.0
+.TP
 .B fcust.service.create_fcust_service_unit(folder_path: pathlib.PosixPath, unit_path: pathlib.PosixPath)
 Create a systemd user unit for folder cutodian.
 Use predefined template and modify where needed.
@@ -303,6 +377,11 @@ It also creates the necessary folder if it doesn’t exist.
 .B Returns
 Path object for the location the unit service will be installed.
 .UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B fcust.service.deactivate_service()
+Deactivate a running fcust service.
 .UNINDENT
 .SS Module contents
 .sp
@@ -495,6 +574,11 @@ Nikolaos Perrakis <\fI\%nikperrakis@gmail.com\fP>
 .sp
 None yet. Why not be the first?
 .SH HISTORY
+.SS 0.0.13 (2020\-11\-09)
+.INDENT 0.0
+.IP \(bu 2
+Adding functionality to create, start and stop systemd user service
+.UNINDENT
 .SS 0.0.10 (2020\-11\-07)
 .INDENT 0.0
 .IP \(bu 2
