@@ -90,7 +90,7 @@ ExecStart=/bin/true
 ExecStop=fcust run $COMMON_FOLDER_PATH
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 """
 
     template = template.replace("$COMMON_FOLDER_PATH", str(folder_path))
@@ -99,12 +99,6 @@ WantedBy=multi-user.target
     with open(unit_path, "w") as fh:
         fh.write(template)
     logger.info("Systemd service unit installed!")
-
-
-# Add function to start/stop the service and appropriate CLI hook.
-# activate the newly created systemd service units with:
-# $ systemctl --user enable fcust
-# $ systemctl --user start fcust
 
 
 def activate_service():
