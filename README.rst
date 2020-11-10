@@ -56,8 +56,6 @@ problems.
 Quick Start Guide
 -----------------
 
-.. highlight:: shell
-
 - Install fcust::
 
 

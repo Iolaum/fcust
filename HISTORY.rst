@@ -2,7 +2,7 @@
 History
 =======
 
-0.0.13 (2020-11-09)
+0.0.14 (2020-11-10)
 -------------------
 
 * Adding functionality to create, start and stop systemd user service
