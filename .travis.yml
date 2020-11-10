@@ -5,7 +5,7 @@ dist: focal
 language: python
 services: docker
 python:
-  - 3.8
+  - 3.9
 jobs:
   include:
     - stage: docker-fedora
@@ -29,4 +29,4 @@ deploy:
   on:
     tags: true
     repo: Iolaum/fcust
-    python: 3.8
+    python: 3.9
