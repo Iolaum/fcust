@@ -55,7 +55,8 @@ code: ## code quality checks
 	flake8 fcust tests
 	mypy fcust tests
 	check-manifest
-	yamllint .travis.yml
+	yamllint action.yml
+	yamllint .github/workflows
 	doc8 docs
 
 test: ## run tests quickly with the default Python
