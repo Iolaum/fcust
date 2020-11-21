@@ -6,8 +6,8 @@ Folder Custodian
 .. image:: https://img.shields.io/pypi/v/fcust.svg
         :target: https://pypi.python.org/pypi/fcust
 
-.. image:: https://img.shields.io/travis/Iolaum/fcust.svg
-        :target: https://travis-ci.com/Iolaum/fcust
+.. image:: https://github.com/Iolaum/fcust/workflows/CI/badge.svg
+        :target: https://github.com/Iolaum/fcust/actions
 
 .. image:: https://readthedocs.org/projects/fcust/badge/?version=latest
         :target: https://fcust.readthedocs.io/en/latest/?badge=latest

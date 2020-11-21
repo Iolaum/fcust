@@ -1,0 +1,9 @@
+name: 'fcust-image'
+description: 'Fedora Folder Custodian Testing Container Image'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'award'
+  color: 'green'
