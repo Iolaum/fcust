@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.0.15
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -27,7 +27,6 @@ BuildRequires:  python3dist(click) >= 7.1
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
-
 Requires:       python3dist(click) >= 7.1
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
@@ -35,9 +34,9 @@ Requires:       python3dist(setuptools)
  into the contents of a specified common folder
  and makes sure they have appropriate permissions.
 
-%package -n python-%{pypi_name}-doc
+%package -n python3-%{pypi_name}-doc
 Summary:        Documentation for fcust
-%description -n python-%{pypi_name}-doc
+%description -n python3-%{pypi_name}-doc
 Documentation for Linux Common Folder Custodian
 
 %prep
@@ -67,11 +66,15 @@ rm -rf html/.{doctrees,buildinfo}
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
 
-%files -n python-%{pypi_name}-doc
+%files -n python3-%{pypi_name}-doc
 %doc html
 %license LICENSE
 
 %changelog
+* Sun Nov 22 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.0-2
+- Added ability to see recent service logs.
+- Releasing beta version of feature complete package.
+
 * Tue Nov 10 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.0.14-1
 - Adding functionality to create, start and stop systemd user service.
 

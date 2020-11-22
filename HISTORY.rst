@@ -2,6 +2,12 @@
 History
 =======
 
+0.1.0 (2020-11-22)
+-------------------
+
+* Added ability to see recent service logs.
+* Releasing beta version of feature complete package.
+
 0.0.14 (2020-11-10)
 -------------------
 
