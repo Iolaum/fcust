@@ -2,14 +2,12 @@
 
 """Tests for `fcust` main module."""
 
-import pytest
-
-# import mock
+import pytes
 import tempfile
 from pathlib import Path, PurePath
-from shutil import chown
+from shutil import chown, rmtree
 from click.testing import CliRunner
-from fcust.fcust import CommonFolder
+from fcust.fcust import CommonFolder, create_logger
 from fcust import cli
 
 
@@ -84,6 +82,9 @@ class TestCommonFolder:
         assert oct(self.o2.stat().st_mode)[-4:] == "2775"
         assert self.o2.group() == self.group
 
+    def teardown_class(cls):
+        rmtree(cls.folder)
+
 
 class TestCommonFolderCLI:
     def setup_class(cls):
@@ -129,3 +130,28 @@ class TestCommonFolderCLI:
         assert help_result.exit_code == 0
         assert "--help  Show this message and exit." in help_result.output
         assert "Usage: main run [OPTIONS] FOLDER_PATH" in help_result.output
+
+    def teardown_class(cls):
+        rmtree(cls.folder)
+
+
+class TestCreateLogger:
+    @classmethod
+    def setup_class(cls):
+        cls.tmpfd: Path = Path(tempfile.mkdtemp())
+        # populate folder
+        cls.logfd: Path = PurePath.joinpath(cls.tmpfd, "fcust")
+
+    def test_create_logger(self):
+        """
+        Test that logger functions accurately assigns group directory ownership
+        and that proper log file is craeted.
+        """
+        lg = create_logger(lpath=str(self.logfd), cgroup="family")
+        lg.debug("test")
+        assert PurePath.joinpath(self.logfd, (self.logfd.owner() + ".log")).exists()
+        assert self.logfd.group() == "family"
+
+    @classmethod
+    def teardown_class(cls):
+        rmtree(cls.tmpfd)

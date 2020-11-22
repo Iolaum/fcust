@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
@@ -13,5 +14,5 @@ jobs:
     name: Folder Custodian CI Job
     steps:
       - name: fcust-container-ci
-        id: hello
-        uses: Iolaum/fcust@ghactions
+        id: fcust_ci_step1
+        uses: Iolaum/fcust@main

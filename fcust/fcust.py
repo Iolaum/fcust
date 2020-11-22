@@ -9,7 +9,7 @@ from os import getuid
 import logging
 
 
-def create_logger(cgroup: str):
+def create_logger(cgroup: str, lpath: str = "/tmp/fcust/"):
     """
     Function that creates a modified logger to cater fcust functionality.
 
@@ -21,7 +21,7 @@ def create_logger(cgroup: str):
     logger.setLevel(logging.DEBUG)
     # Create logging path in /tmp
     # TODO: make filename depend on day/time? and tempfile pkg?
-    logpath = Path("/tmp/fcust")
+    logpath = Path(lpath)
     logpath.mkdir(exist_ok=True)
     # getting user name https://stackoverflow.com/a/2899055
     cuser = getpwuid(getuid()).pw_name

@@ -81,6 +81,6 @@ setup(
         "dev": setup_requirements + test_requirements
     },
     url='https://github.com/Iolaum/fcust',
-    version='0.0.14',
+    version='0.0.15',
     zip_safe=False,
 )
