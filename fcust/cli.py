@@ -1,5 +1,6 @@
 """Console script for fcust."""
 import click
+from subprocess import run as srun
 from pathlib import PosixPath
 from fcust.fcust import CommonFolder
 from fcust.service import (
@@ -76,7 +77,23 @@ def deactivate():
     click.echo("fcust service deactivated.")
 
 
+@click.command()
+def logs(
+    since: str = "today",
+    help=(
+        "Date from which we want to see logs. String in format 'YYYY-MM-DD hh:mm:ss'. "
+        "Defaults to today."
+    ),
+):
+    """
+    See folder custodian's user service logs from specified time.
+    """
+    click.echo("Showing Folder Custodian service logs.")
+    srun(["journalctl", "--user-unit=fcust.service", f"--since={since}"], check=True)
+
+
 main.add_command(run)
 main.add_command(setup)
 main.add_command(activate)
 main.add_command(deactivate)
+main.add_command(logs)

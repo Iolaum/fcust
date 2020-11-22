@@ -2,7 +2,7 @@
 
 """Tests for `fcust` main module."""
 
-import pytes
+import pytest
 import tempfile
 from pathlib import Path, PurePath
 from shutil import chown, rmtree
