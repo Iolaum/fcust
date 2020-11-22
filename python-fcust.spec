@@ -2,7 +2,7 @@
 %global pypi_name fcust
 
 Name:           python-%{pypi_name}
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
@@ -71,7 +71,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 
 %changelog
-* Sun Nov 22 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.0-2
+* Sun Nov 22 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-1
 - Added ability to see recent service logs.
 - Releasing beta version of feature complete package.
 
