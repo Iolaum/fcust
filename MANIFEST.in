@@ -7,6 +7,9 @@ include requirements.txt
 include Dockerfile
 exclude .yamllint
 exclude python-fcust.spec
+exclude action.yml
+exclude entrypoint.sh
+exclude .hadolint.yaml
 
 recursive-include tests *
 recursive-exclude * __pycache__
@@ -15,6 +18,3 @@ recursive-exclude * *.py[co]
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
 include docs/_build/man/fcust.1
 recursive-exclude docs/_build/html *
-
-exclude action.yml
-exclude entrypoint.sh
