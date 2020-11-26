@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "FCUST" "1" "Nov 22, 2020" "0.0.15" "Folder Custodian"
+.TH "FCUST" "1" "Nov 26, 2020" "0.1.1" "Folder Custodian"
 .SH NAME
 fcust \- Folder Custodian Documentation
 .
@@ -530,21 +530,29 @@ and make sure that the tests pass for all supported Python versions.
 .SS Developing on Fedora Silverblue
 .sp
 If developing on Fedora Silverblue the following set up is suggested:
+.INDENT 0.0
+.INDENT 3.5
 .sp
+.nf
+.ft C
 # Crete new toolbox
 $ toolbox create dev
 # Add toolbox entry to /etc/hosts to avoid
 # warning: Could not canonicalize hostname: toolbox
 $ sudo nano /etc/hosts
-# 127.0.0.1 … toolbox
+# 127.0.0.1 ... toolbox
 $ toolbox enter dev
 # Following commands are inside the toolbox
-$ sudo su $USER # This is to bypass \fI\%https://github.com/containers/toolbox/issues/608\fP
+$ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
 $ cd $source_code_root_repository
-$ sudo dnf install make fedpkg python3\-wheel python3\-devel python3\-sphinx python3\-click
+$ sudo dnf install make fedpkg python3\-wheel python3\-devel python3\-sphinx python3\-click hadolint
 $ make code
 $ make test
 $ make fedpkg
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .SS Deploying
 .sp
 A reminder for the maintainers on how to deploy.
@@ -574,6 +582,13 @@ Nikolaos Perrakis <\fI\%nikperrakis@gmail.com\fP>
 .sp
 None yet. Why not be the first?
 .SH HISTORY
+.SS 0.1.1 (2020\-11\-22)
+.INDENT 0.0
+.IP \(bu 2
+Added ability to see recent service logs.
+.IP \(bu 2
+Releasing beta version of feature complete package.
+.UNINDENT
 .SS 0.0.14 (2020\-11\-10)
 .INDENT 0.0
 .IP \(bu 2

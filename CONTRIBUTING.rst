@@ -110,22 +110,22 @@ Before you submit a pull request, check that it meets these guidelines:
 Developing on Fedora Silverblue
 -------------------------------
 
-If developing on Fedora Silverblue the following set up is suggested:
+If developing on Fedora Silverblue the following set up is suggested::
 
-# Crete new toolbox
-$ toolbox create dev
-# Add toolbox entry to /etc/hosts to avoid
-# warning: Could not canonicalize hostname: toolbox
-$ sudo nano /etc/hosts
-# 127.0.0.1 ... toolbox
-$ toolbox enter dev
-# Following commands are inside the toolbox
-$ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
-$ cd $source_code_root_repository
-$ sudo dnf install make fedpkg python3-wheel python3-devel python3-sphinx python3-click hadolint
-$ make code
-$ make test
-$ make fedpkg
+    # Crete new toolbox
+    $ toolbox create dev
+    # Add toolbox entry to /etc/hosts to avoid
+    # warning: Could not canonicalize hostname: toolbox
+    $ sudo nano /etc/hosts
+    # 127.0.0.1 ... toolbox
+    $ toolbox enter dev
+    # Following commands are inside the toolbox
+    $ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
+    $ cd $source_code_root_repository
+    $ sudo dnf install make fedpkg python3-wheel python3-devel python3-sphinx python3-click hadolint
+    $ make code
+    $ make test
+    $ make fedpkg
 
 
 Deploying
