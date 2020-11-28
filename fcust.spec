@@ -14,7 +14,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(wheel)
-BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(click) >= 7.1
 
@@ -40,6 +39,7 @@ rm -rf html/.{doctrees,buildinfo}
 %py3_install
 
 %check
+getent group family 2>&1 > /dev/null || (sudo groupadd family && sudo usermod -a -G family $(whoami))
 %{__python3} setup.py test
 
 %files -n %{pypi_name}
