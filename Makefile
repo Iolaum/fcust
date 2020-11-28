@@ -106,7 +106,7 @@ fedpkg: # build package for Fedora (33)
 	# move new package to rpm folder
 	mv dist/fcust-*.tar.gz ./rpm/
 	# add needed spec file
-	cp python-fcust.spec ./rpm/
+	cp fcust.spec ./rpm/
 	# create rpm packages
 	fedpkg --release f33 --path ./rpm local
 	echo "RPM Files Built!"

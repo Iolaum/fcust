@@ -1,14 +1,13 @@
-# Originally created by pyp2rpm-3.3.4
 %global pypi_name fcust
 
-Name:           python-%{pypi_name}
+Name:           %{pypi_name}
 Version:        0.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
 URL:            https://github.com/Iolaum/fcust
-Source0:        %{pypi_source}
+Source0:        %{URL}/archive/%{Version}.tar.gz#/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -22,22 +21,6 @@ BuildRequires:  python3dist(click) >= 7.1
  The Linux Common Folder Custodian looks
  into the contents of a specified common folder
  and makes sure they have appropriate permissions.
- 
-
-%package -n     python3-%{pypi_name}
-Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
-Requires:       python3dist(click) >= 7.1
-Requires:       python3dist(setuptools)
-%description -n python3-%{pypi_name}
- The Linux Common Folder Custodian looks
- into the contents of a specified common folder
- and makes sure they have appropriate permissions.
-
-%package -n python3-%{pypi_name}-doc
-Summary:        Documentation for fcust
-%description -n python3-%{pypi_name}-doc
-Documentation for Linux Common Folder Custodian
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
@@ -58,19 +41,19 @@ rm -rf html/.{doctrees,buildinfo}
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n %{pypi_name}
 %license LICENSE
-%doc README.rst
+%doc html
 %{_mandir}/man1/fcust.1.gz
 %{_bindir}/fcust
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
 
-%files -n python3-%{pypi_name}-doc
-%doc html
-%license LICENSE
 
 %changelog
+* Sat Nov 28 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-2
+- Updated packaging to build for COPR
+
 * Sun Nov 22 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-1
 - Added ability to see recent service logs.
 - Releasing beta version of feature complete package.
