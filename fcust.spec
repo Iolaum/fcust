@@ -14,6 +14,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(wheel)
+BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(click) >= 7.1
 
