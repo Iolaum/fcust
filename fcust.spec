@@ -2,7 +2,7 @@
 
 Name:           %{pypi_name}
 Version:        0.1.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
@@ -53,8 +53,11 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Mon Nov 30 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-3
+- Updated documentation for COPR usage.
+
 * Sat Nov 28 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-2
-- Updated packaging to build for COPR
+- Updated packaging to build for COPR.
 
 * Sun Nov 22 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-1
 - Added ability to see recent service logs.

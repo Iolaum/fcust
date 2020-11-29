@@ -59,7 +59,8 @@ Quick Start Guide
 - Install fcust::
 
 
-    $ dnf install python3-fcust-0.0.13-1.fc33.noarch.rpm
+    $ sudo dnf copr enable iolaum/fcust 
+    $ sudo dnf install fcust
 
 - Manually create a common group and add as members the users that will have access to it.
   For example::
@@ -83,11 +84,3 @@ Quick Start Guide
 - In order to run fcust manually on a properly permissioned common folder run::
 
     $ fcust run /path/to/common/folder/
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage

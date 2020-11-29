@@ -6,7 +6,7 @@ include README.rst
 include requirements.txt
 include Dockerfile
 exclude .yamllint
-exclude python-fcust.spec
+exclude fcust.spec
 exclude action.yml
 exclude entrypoint.sh
 exclude .hadolint.yaml

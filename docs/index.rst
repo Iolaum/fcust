@@ -7,7 +7,6 @@ Welcome to Folder Custodian's documentation!
 
    readme
    installation
-   usage
    modules
    contributing
    authors

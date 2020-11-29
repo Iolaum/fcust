@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/Iolaum/fcust/issues.
+Report bugs at the project's `issues page`_.
 
 If you are reporting a bug, please include:
 
@@ -45,7 +45,9 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/Iolaum/fcust/issues.
+The best way to send feedback is to file an issue at the project's `issues page`_.
+
+.. _issues page: https://github.com/Iolaum/fcust/issues.
 
 If you are proposing a feature:
 
@@ -61,37 +63,41 @@ Get Started!
 Ready to contribute? Here's how to set up `fcust` for local development.
 
 1. Fork the `fcust` repo on GitHub.
-2. Clone your fork locally. ::
+2. Install Required packages. ::
+
+    $ sudo dnf install python3-pip python3-tox python3-wheel make git findutils hadolint
+
+3. Clone your fork locally. ::
 
     $ git clone git@github.com:your_name_here/fcust.git
     $ cd fcust
 
-3. From the root of the repository create a python virtual environment to use for our project.
+4. From the root of the repository create a python virtual environment to use for our project.
    Install the project in editable mode along with developer dependencies. ::
 
     $ python3 -m venv venv
     $ source venv/bin/activate
     (venv) $ pip install -e .[dev]
 
-4. Create a branch for local development. ::
+5. Create a branch for local development. ::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass code quality checks
+6. When you're done making changes, check that your changes pass code quality checks
    and tests. ::
 
     $ make code
     $ make test
 
-6. Commit your changes and push your branch to GitHub. ::
+7. Commit your changes and push your branch to GitHub. ::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-7. Submit a pull request through the GitHub website.
+8. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------
@@ -103,9 +109,10 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 3. The pull request should work for Python 3.9, for PyPy and Fedora. Check
-   https://travis-ci.com/Iolaum/fcust/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+   the `relevant GitHub Actions page`_ and make sure that the tests pass.
 
+
+.. _relevant GitHub Actions page: https://github.com/Iolaum/fcust/actions?query=workflow%3ACI
 
 Developing on Fedora Silverblue
 -------------------------------
@@ -132,11 +139,14 @@ Deploying
 ---------
 
 A reminder for the maintainers on how to deploy.
-Make sure all your changes are committed (including an entry in HISTORY.rst).
+Make sure all your changes are committed.
 Then run::
 
 $ bump2version patch # possible: major / minor / patch
 $ git push
 $ git push --tags
 
-Travis will then deploy to PyPI if tests pass.
+Then make sure to update `HISTORY.rst` and the `fcust.spec` changelog section. Afterwards
+commit and push to Github.
+
+If all checks pass manually deploy to PyPI. Merge to the release branch to automatically trigger a COPR build.
