@@ -42,6 +42,7 @@ dev_requirements = [
     "coverage",
     "yamllint",
     "doc8",
+    "pluggy<1.0,>=0.12" # Added because of pytest dependency and F32 copr build failure
 ]
 
 setup(
@@ -54,6 +55,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
     # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901

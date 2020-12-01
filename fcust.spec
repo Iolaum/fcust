@@ -2,7 +2,7 @@
 
 Name:           %{pypi_name}
 Version:        0.1.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
@@ -29,6 +29,7 @@ BuildRequires:  python3dist(click) >= 7.1
 rm -rf %{pypi_name}.egg-info
 
 %build
+pip install --user --upgrade pip
 %py3_build
 # generate html and man docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
@@ -53,6 +54,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Tue Dec 01 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-3
+- Fix COPR build for Fedora 32
+
 * Mon Nov 30 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-3
 - Updated documentation for COPR usage.
 
