@@ -2,7 +2,7 @@
 
 Name:           %{pypi_name}
 Version:        0.1.1
-Release:        4%{?dist}
+Release:        6%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
@@ -17,6 +17,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(wheel)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(click) >= 7.1
+BuildRequires:  python3dist(cffi)
 
 %description
  The Linux Common Folder Custodian looks
@@ -54,7 +55,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
-* Tue Dec 01 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-3
+* Tue Dec 01 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-6
+- Fix COPR build for aarch64
+
+* Tue Dec 01 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-4
 - Fix COPR build for Fedora 32
 
 * Mon Nov 30 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-3
