@@ -2,7 +2,7 @@
 
 Name:           %{pypi_name}
 Version:        0.1.1
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
