@@ -12,7 +12,7 @@ RUN usermod -a -G family user2
 
 WORKDIR /src/
 RUN git clone https://github.com/Iolaum/fcust.git /src
-RUN pip install --upgrade --no-cache-dir pip && pip install .[dev] --no-cache-dir
+RUN pip install .[dev] --no-cache-dir
 RUN chmod +x /src/entrypoint.sh
 RUN chown -R user1:user1 /src/
 USER user1
