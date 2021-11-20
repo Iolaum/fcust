@@ -108,7 +108,7 @@ fedpkg: # build package for Fedora (33)
 	# add needed spec file
 	cp fcust.spec ./rpm/
 	# create rpm packages
-	fedpkg --release f33 --path ./rpm local
+	fedpkg --release f35 --path ./rpm local
 	echo "RPM Files Built!"
 	# check rpm packages
-	fedpkg --release f33 --path ./rpm lint
+	fedpkg --release f35 --path ./rpm lint

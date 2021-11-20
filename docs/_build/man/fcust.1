@@ -1,8 +1,5 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "FCUST" "1" "Nov 30, 2020" "0.1.1" "Folder Custodian"
-.SH NAME
-fcust \- Folder Custodian Documentation
 .
 .nr rst2man-indent-level 0
 .
@@ -30,6 +27,9 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
+.TH "FCUST" "1" "Nov 21, 2021" "0.1.1" "Folder Custodian"
+.SH NAME
+fcust \- Folder Custodian Documentation
 .SH FOLDER CUSTODIAN
 \fI\%\fP\fI\%\fP\fI\%Documentation Status\fP\fI\%Updates\fP
 .sp
@@ -38,7 +38,7 @@ Linux Common Folder Custodian
 .IP \(bu 2
 Free software: GNU General Public License v3
 .IP \(bu 2
-Documentation: \fI\%https://fcust.readthedocs.io\fP\&.
+Documentation:  \fI\%Read the Docs\fP
 .UNINDENT
 .SS Why?
 .sp
@@ -487,7 +487,9 @@ $ sudo nano /etc/hosts
 # 127.0.0.1 ... toolbox
 $ toolbox enter dev
 # Following commands are inside the toolbox
-$ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
+$ sudo groupadd family
+$ sudo usermod \-a \-G family $USER
+# exit and re\-enter toolbox container for changes to take effect.
 $ cd $source_code_root_repository
 $ sudo dnf install make fedpkg python3\-wheel python3\-devel python3\-sphinx python3\-click hadolint
 $ make code
