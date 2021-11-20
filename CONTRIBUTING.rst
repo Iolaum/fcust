@@ -127,7 +127,9 @@ If developing on Fedora Silverblue the following set up is suggested::
     # 127.0.0.1 ... toolbox
     $ toolbox enter dev
     # Following commands are inside the toolbox
-    $ sudo su $USER # This is to bypass https://github.com/containers/toolbox/issues/608
+    $ sudo groupadd family
+    $ sudo usermod -a -G family $USER
+    # exit and re-enter toolbox container for changes to take effect.
     $ cd $source_code_root_repository
     $ sudo dnf install make fedpkg python3-wheel python3-devel python3-sphinx python3-click hadolint
     $ make code
