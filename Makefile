@@ -98,7 +98,7 @@ dist: clean ## builds source and wheel package
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
-fedpkg: # build package for Fedora (33)
+fedpkg: # build package for Fedora (35)
 	# build package locally
 	make dist
 	# remove all previous artifacts

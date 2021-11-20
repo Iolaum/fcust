@@ -42,7 +42,8 @@ dev_requirements = [
     "coverage",
     "yamllint",
     "doc8",
-    "pluggy<1.0,>=0.12" # Added because of pytest dependency and F32 copr build failure
+    "pluggy",
+    "docutils==0.17" # Added package to avoid pkg_resources.ContextualVersionConflict docutils error
 ]
 
 setup(
@@ -57,6 +58,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901
     data_files=[("/usr/share/man/man1/", ["docs/_build/man/fcust.1"])],
