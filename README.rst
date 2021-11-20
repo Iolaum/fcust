@@ -24,7 +24,9 @@ Linux Common Folder Custodian
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://fcust.readthedocs.io.
+* Documentation:  `Read the Docs`_
+
+.. _`Read the Docs`: https://fcust.readthedocs.io
 
 
 Why?
