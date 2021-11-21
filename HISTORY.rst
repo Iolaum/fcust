@@ -2,6 +2,12 @@
 History
 =======
 
+1.0.0 (2020-11-21)
+-------------------
+
+* Updated package for Fedora 35.
+* Releasing production version.
+
 0.1.1 (2020-11-22)
 -------------------
 

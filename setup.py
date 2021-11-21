@@ -81,6 +81,6 @@ setup(
     # hack from https://stackoverflow.com/a/41398850/1904901 to be able to install deps from pip
     extras_require={"dev": dev_requirements},
     url="https://github.com/Iolaum/fcust",
-    version="0.1.1",
+    version="1.0.0",
     zip_safe=False,
 )

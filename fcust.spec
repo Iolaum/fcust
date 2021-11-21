@@ -1,8 +1,8 @@
 %global pypi_name fcust
 
 Name:           %{pypi_name}
-Version:        0.1.1
-Release:        8%{?dist}
+Version:        1.0.0
+Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
@@ -55,6 +55,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Sun Nov 21 2021 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.0-1
+- Updated package for Fedora 35.
+- Releasing production version.
+
 * Tue Dec 01 2020 Nikolaos Perrakis <nikperrakis@gmail.com> - 0.1.1-6
 - Fix COPR build for aarch64
 
