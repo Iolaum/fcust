@@ -1,7 +1,7 @@
 FROM fedora:35
 
 RUN dnf -y update
-RUN dnf -y install python3-pip python3-tox python3-wheel make git findutils hadolint
+RUN dnf -y install python3-pip python3-wheel make git findutils hadolint
 RUN dnf clean all
 
 RUN useradd -ms /bin/bash user1

@@ -38,7 +38,6 @@ dev_requirements = [
     "flake8",
     "black",
     "mypy",
-    "tox",
     "coverage",
     "yamllint",
     "doc8",

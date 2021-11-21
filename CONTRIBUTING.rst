@@ -65,7 +65,7 @@ Ready to contribute? Here's how to set up `fcust` for local development.
 1. Fork the `fcust` repo on GitHub.
 2. Install Required packages. ::
 
-    $ sudo dnf install python3-pip python3-tox python3-wheel make git findutils hadolint
+    $ sudo dnf install python3-pip python3-wheel make git findutils hadolint
 
 3. Clone your fork locally. ::
 
