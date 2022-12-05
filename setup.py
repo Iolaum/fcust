@@ -57,6 +57,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     # Adding man pages to python package: https://stackoverflow.com/a/48381612/1904901
     data_files=[("/usr/share/man/man1/", ["docs/_build/man/fcust.1"])],
