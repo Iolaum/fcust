@@ -2,12 +2,13 @@
 
 Name:           %{pypi_name}
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
 URL:            https://github.com/Iolaum/fcust
-Source0:        %{URL}/archive/%{Version}.tar.gz#/%{pypi_name}-%{version}.tar.gz
+Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
+
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -55,6 +56,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Mon Dec 05 2022 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.0-2
+- Upgrade specfile
+- Upgrade package for Fedora 37
+
 * Sun Nov 21 2021 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.0-1
 - Updated package for Fedora 35.
 - Releasing production version.
