@@ -103,7 +103,6 @@ fedpkg: # build package for Fedora (37)
 	cp dist/fcust-*.tar.gz ./_rpm/
 	# add needed spec file
 	cp fcust.spec ./_rpm/
-	cp fcust_source.tar ./_rpm/
 	# create rpm packages
 	fedpkg --release f37 --path ./_rpm local
 	echo "RPM Files Built!"

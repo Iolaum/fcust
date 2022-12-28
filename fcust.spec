@@ -7,7 +7,7 @@ Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
 URL:            https://github.com/Iolaum/fcust
-# taken from the archive created from `make dist` command
+# taken from the archive created from `make dist` command, use to test locally
 # https://asamalik.fedorapeople.org/tmp-docs-preview/packaging-guidelines/SourceURL/
 # Source0:        %{pypi_name}-%{version}.tar.gz
 Source0:        %{URL}/releases/latest/download/fcust-%{version}.tar.gz
