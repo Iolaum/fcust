@@ -2,6 +2,12 @@
 History
 =======
 
+1.0.1 (2022-12-28)
+-------------------
+
+* Updated package for Fedora 37.
+* Updated package to use pyproject.toml.
+
 1.0.0 (2021-11-21)
 -------------------
 

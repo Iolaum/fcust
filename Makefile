@@ -33,7 +33,7 @@ clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and 
 clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
-	rm -fr rpm/*
+	rm -fr _rpm/*
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
@@ -94,17 +94,18 @@ dist: clean ## builds source and wheel package
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
-fedpkg: # build package for Fedora (35)
+fedpkg: # build package for Fedora (37)
 	# build package locally
 	make dist
 	# remove all previous artifacts
-	rm -rf ./rpm/*
+	rm -rf _rpm/*
 	# move new package to rpm folder
-	mv dist/fcust-*.tar.gz ./rpm/
+	cp dist/fcust-*.tar.gz ./_rpm/
 	# add needed spec file
-	cp fcust.spec ./rpm/
+	cp fcust.spec ./_rpm/
+	cp fcust_source.tar ./_rpm/
 	# create rpm packages
-	fedpkg --release f35 --path ./rpm local
+	fedpkg --release f37 --path ./_rpm local
 	echo "RPM Files Built!"
 	# check rpm packages
-	fedpkg --release f35 --path ./rpm lint
+	fedpkg --release f37 --path ./_rpm lint

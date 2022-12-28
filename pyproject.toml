@@ -1,0 +1,65 @@
+[build-system]
+requires = ["pyproject-toml>=0.0.10"]
+# build-backend = "pyproject_toml.build_system.build_backend"
+# backend-path = ["."]
+
+[project]
+name = "fcust"
+description = "Linux Common Folder Custodian"
+version = "1.0.1"
+authors = [
+    { name = "Nikolaos Perrakis", email = "nikperrakis@gmail.com" }
+]
+dependencies = [
+    "Click >= 7.1",
+]
+readme = "README.rst"
+license = { text = "GNU General Public License v3 (GPLv3)" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+#packages = [
+#    { include = "fcust" },
+#]
+
+[project.optional-dependencies]
+dev = [
+    "pip",
+    "bump2version>=1.0",
+    "wheel",
+    "Sphinx",
+    "twine",
+    "check-manifest",
+    "pytest",
+    "pytest-runner",
+    "mock",
+    "flake8",
+    "black",
+    "mypy",
+    "coverage",
+    "yamllint",
+    "doc8",
+    "pluggy",
+    "docutils==0.17" # Added package to avoid pkg_resources.ContextualVersionConflict docutils error
+]
+
+[project.urls]
+homepage = "https://github.com/Iolaum/fcust"
+
+# https://stackoverflow.com/a/73066937
+[project.scripts]
+fcust = "fcust.cli:main"
+
+[tool.pyproject-toml]
+packages = ["pyproject_toml", "pyproject_toml.build_system", "pyproject_toml.tool"]
+
+# https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+[tool.setuptools]
+packages = ["fcust"]

@@ -75,7 +75,7 @@ Ready to contribute? Here's how to set up `fcust` for local development.
 4. From the root of the repository create a python virtual environment to use for our project.
    Install the project in editable mode along with developer dependencies. ::
 
-    $ python3 -m venv venv
+    $ python3 -m venv venv --system-site-packages
     $ source venv/bin/activate
     (venv) $ pip install -e .[dev]
 

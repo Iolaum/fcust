@@ -107,4 +107,4 @@ ENV/
 ### Cutome additions ###
 
 # ignore rpm directory
-rpm
+_rpm

@@ -3,7 +3,6 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
-include requirements.txt
 include Dockerfile
 exclude .yamllint
 exclude fcust.spec
@@ -16,5 +15,4 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
-include docs/_build/man/fcust.1
 recursive-exclude docs/_build/html *

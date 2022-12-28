@@ -1,13 +1,16 @@
 %global pypi_name fcust
 
 Name:           %{pypi_name}
-Version:        1.0.0
-Release:        2%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Linux Common Folder Custodian
 
 License:        GPLv3+
 URL:            https://github.com/Iolaum/fcust
-Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
+# taken from the archive created from `make dist` command
+# https://asamalik.fedorapeople.org/tmp-docs-preview/packaging-guidelines/SourceURL/
+# Source0:        %{pypi_name}-%{version}.tar.gz
+Source0:        %{URL}/releases/latest/download/fcust-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -26,7 +29,7 @@ BuildRequires:  python3dist(cffi)
  and makes sure they have appropriate permissions.
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -p1 -n %{pypi_name}-%{version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -34,31 +37,39 @@ rm -rf %{pypi_name}.egg-info
 pip install --user --upgrade pip
 %py3_build
 # generate html and man docs
-PYTHONPATH=${PWD} sphinx-build-3 docs html
-PYTHONPATH=${PWD} sphinx-build-3 docs man
-# remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
+#sphinx-build-3 -b html docs/html docs/_build/html
+sphinx-build-3 -b man docs docs/_build/man
+sphinx-build-3 -b html docs docs/_build/html
+rm -rf docs/_build/html/{.doctrees,.buildinfo}
 
 %install
 %py3_install
 
-# %check
-# getent group family 2>&1 > /dev/null || (sudo groupadd family && sudo usermod -a -G family $(whoami))
-# %{__python3} setup.py test
+# Adapted from https://src.fedoraproject.org/rpms/python-pip/blob/a1e1c1dfc94168da1d9130179a86297c64a9488f/f/python-pip.spec#_302-310
+pushd docs/_build/man
+install -d %{buildroot}%{_mandir}/man1
+for MAN in *1; do
+install -pm0644 $MAN %{buildroot}%{_mandir}/man1/$MAN
+done
+popd
 
 %files -n %{pypi_name}
 %license LICENSE
-%doc html
-%{_mandir}/man1/fcust.1.gz
+%doc docs/_build/html
+%{_mandir}/man1/fcust.*
 %{_bindir}/fcust
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
 
 
 %changelog
+
+* Wed Dec 28 2022 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.1-1
+- Updated package to use pyproject.toml.
+- Upgrade package for Fedora 37
+
 * Mon Dec 05 2022 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.0-2
 - Upgrade specfile
-- Upgrade package for Fedora 37
 
 * Sun Nov 21 2021 Nikolaos Perrakis <nikperrakis@gmail.com> - 1.0.0-1
 - Updated package for Fedora 35.
