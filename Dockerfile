@@ -1,4 +1,4 @@
-FROM fedora:37
+FROM fedora:39
 
 RUN dnf -y update
 RUN dnf -y install python3-pip python3-wheel make git findutils hadolint
